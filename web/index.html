@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>QAOA Lab · Experiment workspace</title><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<body>
+<header><a class="brand" href="/" aria-label="QAOA Lab home"><span class="mark">Q</span> QAOA <span>LAB</span></a><div class="environment">LOCAL WORKSPACE <span>Ideal simulator</span></div></header>
+<main>
+<div class="title"><div><p class="eyebrow">QUANTUM OPTIMIZATION / RESEARCH WORKSPACE</p><h1>From possibilities to plans.</h1><p>Configure a circuit. Train its angles. Inspect what it finds.</p></div><span class="version">EXPERIMENT BENCH / 01</span></div>
+<div class="workspace">
+<aside class="panel controls"><div class="panel-heading"><h2>Experiment setup</h2><span>01</span></div>
+<form id="setup"><fieldset id="fields">
+<label for="problem">Problem</label><select id="problem" name="problem"><option value="maxcut">Five-node Max-Cut</option><option value="join3">Three-table join · paper example</option><option value="bushy4">Four-table join · bushy</option><option value="deep4">Four-table join · deep</option><option value="bushy4_valid">Four-table bushy · valid-plan mixer</option><option value="deep4_valid">Four-table deep · valid-plan mixer</option></select>
+<p id="description" class="help">Split a five-node graph into two groups to maximize crossing edges.</p>
+<div class="problem-facts"><span id="qubits">5 qubits</span><span id="states">32 basis states</span></div>
+<label for="method">Classical optimizer</label><select id="method" name="method"><option>L-BFGS-B</option><option>COBYLA</option><option value="ADAM">Adam</option></select>
+<div class="pair"><div><label for="p">Depth p</label><input id="p" name="p" type="number" min="1" max="3" value="2" required></div><div><label for="maxiter">Optimizer budget</label><input id="maxiter" name="maxiter" type="number" min="1" max="200" value="100" required></div></div>
+<p class="help" id="budget-note">Maximum iterations. Gradient and objective calls are counted separately.</p>
+<div id="penalty-control" hidden><label for="penalty">Join penalty</label><select id="penalty" name="penalty"><option value="max_plus_one">Maximum cost + 1</option><option value="twice_max">2 × maximum cost</option></select><p class="help">Cost evolution and energy are normalized by the penalty.</p></div>
+<div class="pair"><div><label for="seed">Training seed</label><input id="seed" name="seed" type="number" min="0" max="4294967295" value="42" required></div><div><label for="sample_seed">Sampling seed</label><input id="sample_seed" name="sample_seed" type="number" min="0" max="4294967295" value="123" required></div></div>
+<label for="shots">Simulated samples</label><input id="shots" name="shots" type="number" min="100" max="10000" value="1000" required>
+<button class="primary" id="run" type="submit">Run experiment</button>
+</fieldset></form>
+<p class="footnote">Runs stay in memory until the server stops. Download a report to keep your results.</p></aside>
+<section class="results" aria-label="Experiment results">
+<div class="runbar"><div><span id="status-badge" class="badge">READY</span><span id="status" role="status" aria-live="polite">Waiting for your first experiment</span></div><button id="download" class="secondary" disabled>Download JSON</button></div>
+<p id="error" role="alert" hidden></p>
+<div id="empty" class="panel empty"><div class="empty-symbol" aria-hidden="true">|ψ⟩</div><h2>Your next experiment starts here.</h2><p>Run the five-node example, or explore how QAOA selects database join plans.</p><div class="flow"><span>Encode costs</span><span>Train circuit</span><span>Inspect outcomes</span></div><p class="disclaimer">Real calculations on an ideal quantum simulator.<br>No hardware execution or demonstrated quantum advantage.</p></div>
+<div id="output" hidden>
+<div class="result-heading"><h2 id="result-title"></h2><p id="run-meta"></p></div>
+<div class="metrics"><article class="panel metric"><p>Optimal-state probability</p><strong id="optimal">—</strong><span id="optimal-samples"></span></article><article class="panel metric"><p>Valid-state probability</p><strong id="valid">—</strong><span>Before discarding invalid samples</span></article><article class="panel metric"><p id="expected-label">Expected cut</p><strong id="expected">—</strong><span id="exact"></span></article></div>
+<div class="panel chart-panel"><div class="panel-heading"><h2>Training convergence</h2><span>LOWER ENERGY IS BETTER</span></div><div id="energy-chart" class="chart" aria-label="Energy by objective evaluation"></div><div class="legend"><span class="key raw">Evaluated energy</span><span class="key best">Best so far</span><span id="calls"></span></div><p class="help">Horizontal axis: objective evaluations, including trial points—not iterations.</p></div>
+<div class="panel distribution"><div class="panel-heading"><h2>Most probable outcomes</h2><span>TOP 12 STATES</span></div><p class="help">Wire 0 is the leftmost bit. The download includes every state.</p><div class="table-scroll"><table><thead><tr><th scope="col">Bitstring</th><th scope="col">Probability</th><th scope="col">Samples</th><th scope="col">State</th><th scope="col">Value</th></tr></thead><tbody id="outcomes"></tbody></table></div></div>
+<div class="panel notes"><h2>Read the result carefully</h2><p id="comparison"></p><p id="termination"></p><p id="model-note"></p><details><summary>Trained angles & variable order</summary><pre id="parameters"></pre></details></div>
+</div></section></div>
+<footer>QAOA Lab <span>Research prototype · Python / PennyLane · Local execution</span></footer>
+</main></body></html>
