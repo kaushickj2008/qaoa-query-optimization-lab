@@ -1,5 +1,7 @@
 # QAOA Query Optimization Lab
 
+**[Try the live Streamlit demo](https://quantum-query-optimization-lab.streamlit.app/)**
+
 A Python/PennyLane research prototype exploring QAOA for Max-Cut and small,
 synthetic database join-order problems, with a local interactive web dashboard.
 
