@@ -3,3 +3,4 @@ networkx>=3.0
 pennylane>=0.40
 scipy>=1.10
 matplotlib>=3.7
+streamlit>=1.41,<2

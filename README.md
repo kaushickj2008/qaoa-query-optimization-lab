@@ -5,6 +5,24 @@ synthetic database join-order problems, with a local interactive web dashboard.
 
 ## Quick start
 
+### Streamlit app
+
+After installing the requirements below, run:
+
+```sh
+.venv312/bin/python -m streamlit run streamlit_app.py
+```
+
+For Streamlit Community Cloud, select this repository, branch `main`, entry point
+`streamlit_app.py`, and Python 3.12. No secrets or API keys are required.
+The shared demo supports Max-Cut, the three-table example and two four-qubit
+valid-plan modes. Depth is capped at 2, optimizer budget at 100, and samples at
+2,000. A process-wide lock admits one run at a time; each run uses a subprocess
+with a 120-second timeout. Results are session-local, not durable.
+The original local dashboard retains all six modes, including the 10-qubit QUBOs.
+
+### Original local dashboard
+
 Tested with Python 3.12. From the repository directory:
 
 ```sh
